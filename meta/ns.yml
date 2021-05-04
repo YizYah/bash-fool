@@ -1,0 +1,15 @@
+userClass: user
+codeName: MyApp
+template:
+  dir: /home/yisroel/packages/packrat-ts-all/packrat
+  name: null
+  version: 1
+starter: /home/yisroel/packages/bash-fool-all/bash-fool.starter
+general:
+  packageName: bash-fool
+  author: YizYah
+  owner: YizYah
+  description: run a sequence of bash commands as specified by a json
+  repositoryName: bash-fool
+  license: MIT
+  multi: false
