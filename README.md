@@ -38,6 +38,21 @@ run a sequence of bash commands as specified by a json
 [//]: # ( ns__start_section api )
 
 
+[//]: # ( ns__custom_start Usage )
+# Usage
+First, install the package:
+```
+npm i bash-fool
+```
+Here is a sample usage:
+```
+bash-fool
+```
+
+[//]: # ( ns__custom_end Usage )
+
+
+
 [//]: # ( ns__custom_start APIIntro )
 # API
 

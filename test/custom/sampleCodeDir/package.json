@@ -20,7 +20,6 @@
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "semantic-release": "^17.4.2",
-    "stdout-stderr": "^0.1.13",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
@@ -36,6 +35,8 @@
   ],
   "homepage": "https://github.com/YizYah/bash-fool",
   "keywords": [
+    "ts-packrat",
+    "geenee",
     "ts-packrat",
     "geenee"
   ],
