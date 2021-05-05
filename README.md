@@ -79,12 +79,12 @@ const session = { echoedString }
 
 const targetDir = 'nonexistent'
 
-async () => {
+(async () => {
   let listr = await bashFool(commands, targetDir, session)
   await listr.run() 
      // will echo: `this is echoed: foobar` 
      // and then: `second echoed function` 
-});
+})()
 ```
 
 [//]: # ( ns__custom_end Usage )
