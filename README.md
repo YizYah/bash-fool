@@ -8,8 +8,9 @@
 [//]: # ( ns__start_section intro )
 
 [//]: # ( ns__custom_start description )
-bash-fool
-======
+
+![](images/bash-fool.gif)
+
 run a sequence of bash commands as specified by a json
 
 [//]: # ( ns__custom_end description )
@@ -39,6 +40,14 @@ run a sequence of bash commands as specified by a json
 
 
 [//]: # ( ns__custom_start Usage )
+# Why
+Frequently you need to have a cli execute several commands.  The tools execa and listr make this easy, but why go to the trouble of repeating the same boilerplate each time?
+
+# What
+A function that generates a listr for execution of a set of bash commands using execa.  You just pass in an array of commands and a listr is generated for it.  You can also have:
+* __targetDir__ a string indicating the directory that you can use in commands.  Anywhere that you use a `$codeDir` placeholder, it will be dynamically replaced by `targetDir`.  
+* __session__ an object that lets you dynamically replace other strings in your commands.  You must insert a key `keyName` into `session`, and then you can use it by placing into a command specification that string `__session.keyName__`.  For instance, `__session.lastName__` could be used in a command, and `session` could be `{lastName: 'jones'}.
+
 # Usage
 First, install the package:
 ```
@@ -46,7 +55,36 @@ npm i bash-fool
 ```
 Here is a sample usage:
 ```
-bash-fool
+const bashFool = require('bash-fool')
+
+const commands = [
+  {
+    'title': 'echo a string',
+    'file': 'echo',
+    'arguments': [
+      'this is echoed: __session:echoedString',
+    ],
+  },
+  {
+    title: 'more nothing',
+    file: 'echo',
+    arguments: [
+      'second echoed function',
+    ],
+  },
+]
+
+const echoedString = 'foobar'
+const session = { echoedString }
+
+const targetDir = 'nonexistent'
+
+async () => {
+  let listr = await bashFool(commands, targetDir, session)
+  await listr.run() 
+     // will echo: `this is echoed: foobar` 
+     // and then: `second echoed function` 
+});
 ```
 
 [//]: # ( ns__custom_end Usage )
@@ -54,13 +92,12 @@ bash-fool
 
 
 [//]: # ( ns__custom_start APIIntro )
-# API
 
 [//]: # ( ns__custom_end APIIntro )
 
 
 [//]: # ( ns__custom_start constantsIntro )
-## General Constants and Commands
+
 
 [//]: # ( ns__custom_end constantsIntro )
 
