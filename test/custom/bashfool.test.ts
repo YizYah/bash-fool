@@ -2,15 +2,16 @@ import test from 'ava';
 
 import { bashFool } from '../../src/custom';
 import { CommandSpec } from 'magicalstrings';
-import { inherits } from 'util';
 const {stdout} = require('stdout-stderr')
 const commands = [
   {
     'title': 'do nothing',
     'file': 'echo',
     'arguments': [
-      'this is echoed: __session:echoedString',
+      'this is echoed: __session:echoedString'  ,
+      '>stdout',
     ],
+    'options': {stdio: 'pipe'}
   },
   {
     title: 'more nothing',
@@ -40,6 +41,7 @@ const faultyCommand: CommandSpec[] = [
 
 test('general', async t => {
   stdout.start()
+  stdout.print = true
   let listr = await bashFool(commands, targetDir, session)
   await listr.run()
   t.regex(stdout.output, /do nothing/)
