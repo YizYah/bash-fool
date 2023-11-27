@@ -7,7 +7,7 @@ export function convertCommandOptions(options: any | undefined, codeDir: string,
   const output = { ...options };
   optionsKeys.map((optionKey: string) => {
     output[optionKey] = options[optionKey].replace('$codeDir', codeDir);
-    output[optionKey] = updateSessionValues(session, options[optionKey]);
+    output[optionKey] = updateSessionValues(session, output[optionKey]);
   });
   return output;
 }
